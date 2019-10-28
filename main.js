@@ -48,15 +48,14 @@ function generatePassword(length, lower, number, upper, symbol) {
     //filter unchecked types
     const typesCount = lower + upper + number + symbol
 
-    const typesArray = [{ lower }, { upper }, { number }, { symbol }].filter(item => Object.values(item)[0])
-
     if (typesCount === 0) return ''
+
+    const typesArray = [{ lower }, { upper }, { number }, { symbol }].filter(item => Object.values(item)[0])
 
     //loop over length, call generator function for each type
     for (let i = 0; i < length; i += typesCount) {
         typesArray.forEach(type => {
             const funcName = Object.keys(type)[0]
-
             password += randomFunction[funcName]()
         })
     }
